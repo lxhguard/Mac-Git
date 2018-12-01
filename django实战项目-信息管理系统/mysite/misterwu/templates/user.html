@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <!--<h1>hello {{user}}</h1>-->
+        {% if notfound %}
+            <h2>{{notfound}}</h2>
+        {% else %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{username.avatar_url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{username.login}}</h5>
+                    <p class="card-text">location:{{username.location}}</p>
+                    <a href="{{username.html_url}}" class="btn btn-primary">访问</a>
+                </div>
+            </div>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+
+</body>
+</html>

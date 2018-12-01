@@ -1,0 +1,24 @@
+#tableOne td{
+    background-color: #f0fcff;
+    border: 0.5px solid black;
+    text-align: center;
+    width: 140px;
+}
+button.edit {
+    border: none;
+    color: #55C0A2;
+    background: none;
+    outline: none;
+    /* outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用 */
+    cursor: pointer;
+    /* cursor 属性规定要显示的光标的类型（形状） */
+}
+button.delete {
+    border: none;
+    color: #55C0A2;
+    background: none;
+    outline: none;
+    /* outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用 */
+    cursor: pointer;
+    /* cursor 属性规定要显示的光标的类型（形状） */
+}
