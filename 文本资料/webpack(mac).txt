@@ -1,0 +1,53 @@
+webpack打包工具的基础和使用（慕课网）
+一、什么是webpack
+是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。可以将多种静态资源 js、css、less 转换成一个静态文件，减少了页面的请求。
+01 安装webpack开发环境
+安装可以参考一网站。http://www.mamicode.com/info-detail-2271147.html
+重新安装过程中报错一定要加sudo
+先去官网下载node.js
+npm一般运行起来都很慢，可以用淘宝镜像npm install -g cnpm --registry=https://registry.npm.taobao.org，
+后面的npm改成cnpm再运行，就快很多啦
+查看node是否安装的两个命令： npm -v      node  -v
+在mac环境下安装的命令： sudo npm install webpack -g
+进行全局安装，然后会弹出一个输入框输入密码。我的密码是四位通用。
+查看webpack的版本：webpack -v 
+这里会询问我们安装webpack-cli还是webpack-command.选择第一个。但是命令会提示安装不成功。
+解决办法：sudo npm install web pack-cli -g
+然后你再输入命令webpack -v 会显示你电脑上安装的版本号。
+【
+	如果你安装了低版本的webpack，想安装一个新版本，操作如下：
+	npm -g install web pack -->卸载webpack
+	sudo nom -g I webpack  --> 全局安装webpack 
+	npm install webpack --save-dev
+	sudo nom install webpack-cli -g 
+】
+
+对于一个项目
+1.创建一个项目文件夹： mkdir wpk-test 然后进入该文件夹下
+2.初始化npm: npm init -y
+项目下多了一个package.json文件
+3.安装webpack :$ npm install -D webpack (这是局部安装，如果要在全局安装，把D改成g即可)
+cnpm view webpack versions ：查看webpack所有版本，安装的时候可以指定安装版本
+cnpm install webpack -D
+cnpm install webpack-cli -D
+4、查看webpack的版本,这里会提示我们安装webpack-cli,这是因为 webpack 在 webpack 4 里将命令行相关的都迁移至 webpack-cli 包
+5.打包操作你可以在终端实现，也可以在vscode中使用快捷键command+shift+y打开终端
+在项目下创建src文件夹，里面创建index.js ,因为webpack4.x是以项目根目录下的./src/index.js作为入口，所以我们要新建src目录且把index.js放在src下
+webpack4.x的打包已经不能用webpack 文件a 文件b的方式，而是直接运行webpack --mode development或者webpack --mode production，这样便会默认进行打包，入口文件是‘./src/index.js‘，输出路径是‘./dist/main.js‘，其中src目录即index.js文件需要手动创建，而dist目录及main.js会自动生成
+
+把所有的源码html, css,js都放在src文件夹下，dist文件是打包自动生成的。index.html放在项目的根目录下，跟dist和src一级。
+在index.html中script标签路径需要进行设置为../dist/main.js
+
+6.在package.json中下增加"dev" : "webpack --mode development " ，这样后面就可以直接用npm run dev来执行打包
+二。? 处理CSS文件
+
+在项目根目录下创建一个hello.css文件，然后在index.js中引入hello.css，再次打包，会报错
+![](https://ws1.sinaimg.cn/large/006tNc79ly1fqq9jgy4e5j30kh0cmt8z.jpg)
+
+是因为webpack不支持css文件类型，需要依赖loader
+运行cnpm install css-loader style-loader --save-dev
+css-loader：使webpack可以处理css文件
+style-loader：新建一个style标签，把css-loader处理过的文件放进去，然后插入到HTML标签中
+修改package.json中的 "dev": "webpack --mode development --module-bind ‘css=style-loader!css-loader‘"，再运行cnpm run dev ,打包成功
+
+

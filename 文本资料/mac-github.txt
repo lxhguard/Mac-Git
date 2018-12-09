@@ -1,0 +1,28 @@
+一。初始化
+1.  cd 目标文件     进入目标文件夹
+2. git init       初始化仓库
+3.git config user.name "用户名"
+  git config user.email "你的邮箱"
+4.初始化项目
+   touch main.m
+    git status          查看文件状态
+    git add main.m      将main.m添加到暂缓区
+    git status
+    git commit -m "项目描述" main.m
+    git status
+二。上传
+首先在github上新建一个你要上传代码的仓库
+确认认证的公钥是否正确
+ssh -T
+ git@github.com
+如果成功提示:
+You've successfully authenticated, but GitHub does not provide shell access.
+然后cd到你要上传的项目的文件夹下
+
+touch README.md //新建一个记录提交操作的文档
+git init //初始化本地仓库
+git add README.md //添加
+git add *  //加入所有项目
+git status //检查状态 如果都是绿的 证明成功
+git commit -m "first commit"//提交到要地仓库，并写一些注释
+git remote add origin git@github.com:youname/Test.git //连接远程仓库并建了一个名叫：origin的别名git push -u origin master //将本地仓库的东西提交到地址是origin的地址，master分支下

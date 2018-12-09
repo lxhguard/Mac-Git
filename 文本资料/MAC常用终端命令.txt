@@ -1,0 +1,151 @@
+1.获取管理员权限  sudo -s
+2.打开文件 open + 空格 + - n + 软件路径（可以直接拖进终端）
+	-a  用来加载该文件的应用程序
+	-e 直接在文本编辑器中编辑
+3. 搜索：  mdfind + 文件名 ---》全局搜索
+	   mdfind -onlyin 文件夹的路径 该路径下的文件名--〉精确搜索
+4.读 ：  say + 内容
+	(突然发现它接受英文输入并且读英语，如果你想要让他读出来 汉字·拼音 ，你让拼音之间空格开来。也可以直接敲	汉字。)
+	比较实用的一个用法： 执行比较消耗时间的命令的时候，程序运行结束后语音提醒用户，比如：
+		sleep 10 && say "hello"
+5.延迟睡眠： caffeinate -t 3600  表示一个小时内屏幕不进入睡眠
+6.释放内存（相当于从其电脑）： 
+	purge命令可以清除内存和硬盘的缓存，与重启Mac的效果差不多（还不会关闭你现在用的程序）。purge命令可以	让不活跃的系统内存转变为可以使用的内存，所以电脑卡的时候试试这个命令。
+7. 更新：我们更新系统软件一般都是通过AppStore来更新，但它经常打开的太慢了，所以用终端来更新。
+	sudo softwareupdate -i -a  这个是更新系统的软件，比如系统更新
+8.(1)创建有密码保护的压缩文件： 
+	你可以通过下面的命令将桌面上的文件创建成有密码保护的压缩文件
+ 	zip -e protected.zip ~/DeskTop/task.doc
+	protected.zip 是文件名字，  ~后面的是文件地址。保存之后，文件会存储在你的私人磁盘中。
+	添加： -m 表示压缩完删除原文件
+	      -p 表示不显示压缩进度状态
+	注意：xxx.dat deflated (98%)
+	    xxx.dat文件有98%的空间瘪下去了，即压缩率为2%
+  (2)解压缩 ： unzip [选项] 压缩文件名.zip
+		-x 文件列表 解压缩文件，但不包括指定的file文件。 
+		-v 查看压缩文件目录，但不解压。 
+		-t 测试文件有无损坏，但不解压。 
+		-d 目录 把压缩文件解到指定目录下。 
+		-z 只显示压缩文件的注解。 
+		-n 不覆盖已经存在的文件。 
+		-o 覆盖已存在的文件且不要求用户确认。 
+		-j 不重建文档的目录结构，把所有文件解压到同一目录下。
+	A.将压缩文件text.zip在当前目录下解压缩。
+	    $ unzip text.zip
+	B.将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。
+	    $ unzip -n text.zip -d /tmp
+	C.查看压缩文件目录，但不解压。
+	    $ unzip -v text.zip 
+  	 
+9.删除：
+	ctrl + u 删除当前行
+	ctrl + w 删除游标前的单词
+	ctrl + k 删除从当前游标到行尾的文字
+10.创建txt文本文件： 
+	（1）切换到目标文件内 cd+文件路径
+	（2） vim 文件名.txt
+		编辑页面但是不能输入。插入指令：
+		 i 当前位置前
+		 l 当前行首
+		 a 当前位置后
+		 A 当前行尾
+		 o 当前行之后插入一行
+		 O 当前行之前插入一行
+	（3）保存，退出： 先 ecs ，再 :wq 
+         PS:
+11. 终端命令入门（简单常用）：
+	pwd　　　　　　当前工作目录
+	cd（不加参数）　　进root
+	cd（folder）　　进入文件夹
+	cd ..　　　　　　上级目录
+	cd ~　　　　　　返回root
+	cd -　　　　　　返回上一个访问的目录
+	mkdir [文件名]  新建文件夹
+	rmdir [文件名]  删除文件夹（只有文件夹为空，才可以使用）
+	mv [原文件名] [目标目录] 把文件从一个地方移到另一个地方，但是当没有给出另外一个目录时，移动的现象就是			      为其更改了名字。
+	rm 文件名 　　　　删除文件 （用rm删除的文件是无法从回收站中找回的！！！）
+			      （不能用rm删除文件夹）
+	rm -rf [目录]  危险操作：使用rm递归删除文件夹及文件夹内的所有内容，无法挽回。
+	man [命令]  查看该命令的使用手册（输入q来直接退出）
+	file [文件名]  显示文件类型
+	cat 文件名(|less)　　在终端下查看文件
+	ls　　　　　　　　列出目录下所有文件
+	cp 文件名 目标目录　　将文件拷贝到目标目录下
+	~代表root　　如：~/Document/CPP2/
+	mkdiv　　　　　　新建文件夹
+	g++ 源文件名　　　　编译源文件，产生a.out
+	./文件名　　　　　　运行  例如：./a.out < 输入文件名 > 输出文件名
+	control+d　　　　　中断a.out运行
+	nano 　　　　　　编写脚本语言　　ctrl+o存储
+	nano ....sh　　　　打开
+	bash ....sh　　　　运行脚本
+	echo "...$i..."　　　输出语句
+12. 进程管理
+	ps 查看当前终端运行的程序
+	ps ax 列出这台电脑上正在运行的所有程序
+	top 文字格式查看电脑的运行和负载情况，比如cpu，内存使用情况，正在运行的程序等
+	    （显示这台计算机上有哪些进程，他们占据了多少内存，CPU，负载）q 直接退出
+	kill [PID] 结束指定进程ID的进程
+	    （如果遇到无法杀掉的进程，输入命令 sudo kill -9 [PID](伪装超级管理员，强迫杀掉该进程)，
+		接着输入自己的用户密码（前提是自己这个用户有sudo的资格））
+	nice 改变待执行命令的优先级 例： nice cc -c *.c
+	renice 改变已运行进程的优先级 例：renice +20 32768
+13.比较普通的一些基础操作：
+    cal 查看当月日历
+    cal 2017 查看2017年的日历
+    date 查看当前时间
+    clear  清楚屏幕或者是窗口内容  
+    whoami 显示当前正进行操作的用户名
+    Who 列出当前登录的所有用户
+    du  查询磁盘使用情况
+    df  显示文件系统的总空间和可用空间
+    w   显示当前系统活动的总信息量  
+    history 列出最近执行过的几条命令以及编号
+    r   重复执行最近执行过的 某条命令
+    alias 给某个命令定义别名  例： alias del=rm -I
+    unalias 取消对某个别名的定义。例：unalias del
+14.安全操作：
+	passwd 修改用户密码
+	chmod  改变文件或目录的权限
+	umask  定义创建文件的权限编码
+	chown  改变文件或目录的属主
+	chgrp  改变文件或目录的所属组
+	xlock  给终端上锁
+15.emacs
+输入“emacs”按回车运行，然后快速按“esc+x”，然后输入：
+	doctor 可以与Mac进行对话了，有今天的Siri多少有点相像
+	snake 贪吃蛇
+	tetris 俄罗斯方块
+	gomoku 五子棋
+	pong 乒乓球
+	mpuz 一款解迷游戏 		
+16.mac上的一些彩蛋
+	cat /usr/share/calendar/calendar.history查看类似于“历史上的今天”一样的重大历史事件。
+17.安装homebrew
+   （1）简介：Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。
+援引官方的一句话：又提示缺少套件啦？别担心，Homebrew 随时守候。Homebrew – OS X 不可或缺的套件管理器。
+   （2）安装：/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+PS：据说下载的命令是会更新的，最好还是及时去官网（ http://brew.sh/ ）找最新的下载命令。
+   （3）卸载：
+	$ cd `brew --prefix`
+	$ rm -rf Cellar
+	$ brew prune
+	$ rm `git ls-files`
+	$ rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
+	$ rm -rf .git
+	$ rm -rf ~/Library/Caches/Homebrew
+    (4)简单使用:
+	安装软件：brew install 软件名，例：brew install wget
+	搜索软件：brew search 软件名，例：brew search wget
+	卸载软件：brew uninstall 软件名，例：brew uninstall wget
+	更新所有软件：brew update
+	更新具体软件：brew upgrade 软件名 ，例：brew upgrade git
+	显示已安装软件：brew list
+	查看软件信息：brew info／home 软件名 ，例：brew info git ／ brew home git
+	PS：brew home指令是用浏览器打开官方网页查看软件信息
+	查看哪些已安装的程序需要更新： brew outdated
+	显示包依赖：brew reps
+	显示帮助：brew help
+
+ 
+
